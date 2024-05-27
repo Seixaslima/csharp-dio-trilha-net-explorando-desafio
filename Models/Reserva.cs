@@ -15,6 +15,7 @@ namespace DesafioProjetoHospedagem.Models
 
         public void CadastrarHospedes(List<Pessoa> hospedes)
         {
+            if (Suite == null) throw new Exception("Cadastre uma suite antes de adicionar hospedes");
             bool cabe = hospedes.Count <= Suite.Capacidade;
             if (cabe)
             {
@@ -42,16 +43,20 @@ namespace DesafioProjetoHospedagem.Models
 
         public decimal CalcularValorDiaria()
         {
-            // TODO: Retorna o valor da diária
-            // Cálculo: DiasReservados X Suite.ValorDiaria
-            // *IMPLEMENTE AQUI*
-            decimal valor = 0;
+            // verifica se possui alguma suite cadastrada
+            if (Suite == null)
+                throw new Exception("A reserva precisa de uma suite");
+            //verifica se possui algum hospede cadastrado
+            if (Hospedes == null)
+                throw new Exception("A reserva precisa de pelo menos um hospede");
+
+            decimal valorDiaria = Suite.ValorDiaria;
+            decimal valor = DiasReservados * valorDiaria;
 
             // Regra: Caso os dias reservados forem maior ou igual a 10, conceder um desconto de 10%
-            // *IMPLEMENTE AQUI*
-            if (true)
+            if (DiasReservados > 9)
             {
-                valor = 0;
+                valor *= 0.9M;
             }
 
             return valor;
