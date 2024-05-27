@@ -33,8 +33,10 @@ namespace DesafioProjetoHospedagem.Models
 
         public int ObterQuantidadeHospedes()
         {
-            // TODO: Retorna a quantidade de hóspedes (propriedade Hospedes)
-            // *IMPLEMENTE AQUI*
+            if (Hospedes != null)
+            {
+                return Hospedes.Count;
+            }
             return 0;
         }
 
